@@ -13,7 +13,9 @@ exports.createUser = (req, res) => {
       res.status(400).send({ message: passwordCheck.error });
       return;
     }
+
     const user = new User(req.body);
+    user.password = user.encryptPassword(password);
     user
       .save()
       .then((data) => {

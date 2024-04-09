@@ -1,5 +1,6 @@
+const bcrypt = require('bcrypt-nodejs');
 module.exports = (mongoose) => {
-    const userSchema = mongoose.Schema({
+  const userSchema = mongoose.Schema({
       username: {
         type: String
       },
@@ -33,6 +34,10 @@ module.exports = (mongoose) => {
         }
       }
     });
-  
+
+    userSchema.methods.encryptPassword = (password) => {
+      return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+    };
+
     return mongoose.model('users', userSchema);
-  };
+};
