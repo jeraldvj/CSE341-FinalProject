@@ -2,6 +2,7 @@ const db = require('../models');
 const Office = db.office;
 
 exports.createOffice = (req, res) => {
+  try {
     const office = new Office(req.body);
     office
       .save()
@@ -13,9 +14,13 @@ exports.createOffice = (req, res) => {
           message: err.message || 'Some error occurred while creating the user.'
         });
       });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 };
 
 exports.getAll = (req, res) => {
+  try {
     Office.find({})
       .then((data) => {
         res.status(200).send(data);
@@ -25,9 +30,13 @@ exports.getAll = (req, res) => {
           message: err.message || 'Some error occurred while retrieving users.'
         });
       });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 };
 
 exports.getOffice = (req, res) => {
+  try {
     const officeName = req.params.officeName;
     Office.find({ officeName: officeName })
       .then((data) => {
@@ -42,6 +51,9 @@ exports.getOffice = (req, res) => {
           message: err.message || 'Some error occurred while retrieving users.'
         });
       });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 };
 
 exports.updateOffice = async (req, res) => {

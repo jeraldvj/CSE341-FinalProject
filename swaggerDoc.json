@@ -495,7 +495,7 @@
             }
           },
           "404": {
-            "description": "Status not found"
+            "description": "Office not found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -543,7 +543,7 @@
             }
           },
           "404": {
-            "description": "Status not found"
+            "description": "Supplier not found"
           },
           "500": {
             "description": "Internal Server Error"

@@ -2,6 +2,7 @@ const db = require('../models');
 const Supplier = db.supplier;
 
 exports.createSupplier = (req, res) => {
+  try {
     const supplier = new Supplier(req.body);
     supplier
       .save()
@@ -13,9 +14,13 @@ exports.createSupplier = (req, res) => {
           message: err.message || 'Some error occurred while creating the supplier.'
         });
       });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 };
 
 exports.getAll = (req, res) => {
+  try {
     Supplier.find({})
       .then((data) => {
         res.status(200).send(data);
@@ -25,9 +30,13 @@ exports.getAll = (req, res) => {
           message: err.message || 'Some error occurred while retrieving suppliers.'
         });
       });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 };
 
 exports.getSupplier = (req, res) => {
+  try {
     const supplierName = req.params.supplierName;
     Supplier.find({ supplierName: supplierName })
       .then((data) => {
@@ -42,6 +51,9 @@ exports.getSupplier = (req, res) => {
           message: err.message || 'Some error occurred while retrieving suppliers.'
         });
       });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 };
 
 exports.updateSupplier = async (req, res) => {
