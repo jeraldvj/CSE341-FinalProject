@@ -8,19 +8,17 @@ const LocalStrategy = require('passport-local').Strategy;
 const db = require('../models');
 const User = db.user;
 
-passport.use('local-signin', new LocalStrategy({
+passport.use('local-login', new LocalStrategy({
     usernameField: 'username',
     passwordField: 'password',
     passReqToCallback: true
   }, async (req, username, password, done) => {
     const user = await User.find({username: username});
-    console.log(user.length)
     if(user.length === 0) {
-      return done(null, false, req.flash('signinMessage', 'No User Found'));
+      return done(null, false, req.flash('loginMessage', 'No User Found'));
     }
-    //const comparePassword = bcrypt.compareSync(password, user[0]['password'])
     if(!bcrypt.compareSync(password, user[0]['password'])) {
-      return done(null, false, req.flash('signinMessage', 'Incorrect Password'));
+      return done(null, false, req.flash('loginMessage', 'Incorrect Password'));
     }
     return done(null, user);
 }));

@@ -37,6 +37,73 @@
             "description": "Internal Server Error"
           }
         }
+      },
+      "put": {
+        "tags": ["user"],
+        "summary": "Updated user",
+        "description": "This is to update info for a user",
+        "operationId": "updateUser",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "name that need to be updated",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Updated user object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully modified user"
+          },
+          "400": {
+            "description": "Invalid user supplied"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "500": {
+            "description": "Error occurred"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["user"],
+        "summary": "Delete User",
+        "description": "This is to delete a user",
+        "operationId": "deleteUser",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "The name that needs to be deleted",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully deleted user"
+          },
+          "400": {
+            "description": "Invalid username supplied"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "500": {
+            "description": "Error occurred"
+          }
+        }
       }
     },
     "/user": {
@@ -92,7 +159,7 @@
         "operationId": "getClientById",
         "parameters": [
           {
-            "name": "_id",
+            "name": "id",
             "in": "path",
             "description": "client ID that need to be find",
             "required": true,
@@ -110,60 +177,71 @@
             "description": "Internal Server Error"
           }
         }
-      }
-    },
-    "/client/{lastName}": {
-      "get": {
+      },
+      "put": {
         "tags": ["client"],
-        "summary": "Get a client by last name",
-        "description": "",
-        "operationId": "findClientByLastName",
+        "summary": "Updated Client",
+        "description": "This is to update info for a client",
+        "operationId": "updateClient",
         "parameters": [
           {
-            "name": "lastName",
+            "name": "id",
             "in": "path",
-            "description": "last name that need to be find",
+            "description": "client that need to be updated",
             "required": true,
             "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Updated client object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Client"
+            }
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "204": {
+            "description": "Successfully modified client"
+          },
+          "400": {
+            "description": "Invalid client supplied"
           },
           "404": {
-            "description": "Last Name not found"
+            "description": "Client not found"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Error occurred"
           }
         }
-      }
-    },
-    "/client/{status}": {
-      "get": {
+      },
+      "delete": {
         "tags": ["client"],
-        "summary": "Get a client by status",
-        "description": "",
-        "operationId": "findClientByStatus",
+        "summary": "Delete Client",
+        "description": "This is to delete a client",
+        "operationId": "deleteClient",
         "parameters": [
           {
-            "name": "status",
+            "name": "id",
             "in": "path",
-            "description": "status that need to be find",
+            "description": "The client that needs to be deleted",
             "required": true,
             "type": "string"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Successfully deleted client"
+          },
+          "400": {
+            "description": "Invalid client supplied"
           },
           "404": {
-            "description": "Status not found"
+            "description": "Client not found"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Error occurred"
           }
         }
       }
@@ -239,6 +317,73 @@
             "description": "Internal Server Error"
           }
         }
+      },
+      "put": {
+        "tags": ["office"],
+        "summary": "Updated Office",
+        "description": "This is to update info for an office",
+        "operationId": "updateOffice",
+        "parameters": [
+          {
+            "name": "officeName",
+            "in": "path",
+            "description": "office that need to be updated",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Updated office object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Office"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully modified office"
+          },
+          "400": {
+            "description": "Invalid office supplied"
+          },
+          "404": {
+            "description": "Office not found"
+          },
+          "500": {
+            "description": "Error occurred"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["office"],
+        "summary": "Delete Office",
+        "description": "This is to delete an office",
+        "operationId": "deleteOffice",
+        "parameters": [
+          {
+            "name": "officeName",
+            "in": "path",
+            "description": "The office that needs to be deleted",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully deleted office"
+          },
+          "400": {
+            "description": "Invalid office supplied"
+          },
+          "404": {
+            "description": "Office not found"
+          },
+          "500": {
+            "description": "Error occurred"
+          }
+        }
       }
     },
     "/supplier/{supplierName}": {
@@ -265,6 +410,73 @@
           },
           "500": {
             "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": ["supplier"],
+        "summary": "Updated Supplier",
+        "description": "This is to update info for a supplier",
+        "operationId": "updateSupplier",
+        "parameters": [
+          {
+            "name": "supplierName",
+            "in": "path",
+            "description": "supplier that need to be updated",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Updated supplier object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Supplier"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully modified supplier"
+          },
+          "400": {
+            "description": "Invalid supplier supplied"
+          },
+          "404": {
+            "description": "Supplier not found"
+          },
+          "500": {
+            "description": "Error occurred"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["supplier"],
+        "summary": "Delete Supplier",
+        "description": "This is to delete a supplier",
+        "operationId": "deleteSupplier",
+        "parameters": [
+          {
+            "name": "supplierName",
+            "in": "path",
+            "description": "The supplier that needs to be deleted",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully deleted supplier"
+          },
+          "400": {
+            "description": "Invalid supplier supplied"
+          },
+          "404": {
+            "description": "Supplier not found"
+          },
+          "500": {
+            "description": "Error occurred"
           }
         }
       }
@@ -441,7 +653,7 @@
         "status": {
           "type": "string"
         },
-        "procedures": {
+        "procedureHistory": {
           "type": "array",
           "items": {
           "$ref": "#/definitions/Client_procedureHistory"
@@ -629,7 +841,7 @@
         "procedureName": {
           "type": "string"
         },
-        "pictureLink": {
+        "picture": {
           "type": "string"
         },
         "materialUsed": {

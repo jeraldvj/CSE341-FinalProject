@@ -8,16 +8,16 @@ require('../extra/passport.js');
 
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) return next();
-    res.redirect('/signin');
+    res.redirect('/login');
 }
 
-router.get('/signin', (req, res, next) => {
-    res.render('signin');
+router.get('/login', (req, res, next) => {
+    res.render('login');
 });
     
-router.post('/signin', passport.authenticate('local-signin', {
+router.post('/login', passport.authenticate('local-login', {
     successRedirect: '/api-docs',
-    failureRedirect: '/signin',
+    failureRedirect: '/login',
     failureFlash: true
 }));
 
@@ -32,7 +32,7 @@ router.get('/logout', (req, res) => {;
         if (err) {
           res.status(400).send('Unable to log out')
         } else {
-          res.redirect('/signin');
+          res.redirect('/login');
         }
       });
   });
